@@ -1,0 +1,353 @@
+Route
+Solution 1:
+#Flow 1: 
+50->31->25->15->14->9->0
+#Flow 2: 
+6->3->1->43->31->25->2
+#Flow 3: 
+87->67->34->12->2->1->43
+Solution 2:
+#Flow 1: 
+50->31->25->15->14->9->0
+#Flow 2: 
+6->3->1->43->31->25->2
+#Flow 3: 
+87->43
+###Too short lenghth, wrong route!
+Mapping
+##Mapping flow: 1
+#Source node: 50
+#Destination node: 0
+##Selected route: [50, 31, 25, 15, 14, 9, 0]
+#Mapping 1:
+function 0 -> node 15	function 1 -> node 15	function 2 -> node 14	function 3 -> node 14	
+#Mapping 2:
+function 0 -> node 31	function 1 -> node 15	function 2 -> node 15	function 3 -> node 15	
+#Mapping 3:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 15	
+#Mapping 4:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 9	
+#Mapping 5:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 25	
+#Mapping 6:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 31	
+#Mapping 7:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 14	
+#Mapping 8:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 15	function 3 -> node 15	
+#Mapping 9:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 25	function 3 -> node 15	
+#Mapping 10:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 25	function 3 -> node 9	
+#Mapping 11:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 25	function 3 -> node 14	
+#Mapping 12:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 15	function 3 -> node 14	
+#Mapping 13:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 14	function 3 -> node 14	
+#Mapping 14:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 9	function 3 -> node 9	
+#Mapping 15:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 15	function 3 -> node 9	
+#Mapping 16:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 14	function 3 -> node 9	
+#Mapping 17:
+function 0 -> node 31	function 1 -> node 14	function 2 -> node 14	function 3 -> node 14	
+#Mapping 18:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 14	function 3 -> node 14	
+#Mapping 19:
+function 0 -> node 31	function 1 -> node 15	function 2 -> node 14	function 3 -> node 14	
+#Mapping 20:
+function 0 -> node 31	function 1 -> node 15	function 2 -> node 15	function 3 -> node 14	
+#Mapping 21:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 15	function 3 -> node 14	
+#Mapping 22:
+function 0 -> node 31	function 1 -> node 15	function 2 -> node 14	function 3 -> node 9	
+#Mapping 23:
+function 0 -> node 31	function 1 -> node 14	function 2 -> node 14	function 3 -> node 9	
+#Mapping 24:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 14	function 3 -> node 9	
+#Mapping 25:
+function 0 -> node 31	function 1 -> node 15	function 2 -> node 15	function 3 -> node 9	
+#Mapping 26:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 15	function 3 -> node 15	
+#Mapping 27:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 15	function 3 -> node 9	
+#Mapping 28:
+function 0 -> node 31	function 1 -> node 15	function 2 -> node 9	function 3 -> node 9	
+#Mapping 29:
+function 0 -> node 31	function 1 -> node 9	function 2 -> node 9	function 3 -> node 9	
+#Mapping 30:
+function 0 -> node 31	function 1 -> node 14	function 2 -> node 9	function 3 -> node 9	
+#Mapping 31:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 9	function 3 -> node 9	
+#Mapping 32:
+function 0 -> node 25	function 1 -> node 15	function 2 -> node 9	function 3 -> node 9	
+#Mapping 33:
+function 0 -> node 15	function 1 -> node 15	function 2 -> node 9	function 3 -> node 9	
+#Mapping 34:
+function 0 -> node 15	function 1 -> node 14	function 2 -> node 9	function 3 -> node 9	
+#Mapping 35:
+function 0 -> node 14	function 1 -> node 14	function 2 -> node 9	function 3 -> node 9	
+#Mapping 36:
+function 0 -> node 25	function 1 -> node 14	function 2 -> node 9	function 3 -> node 9	
+#Mapping 37:
+function 0 -> node 25	function 1 -> node 9	function 2 -> node 9	function 3 -> node 9	
+#Mapping 38:
+function 0 -> node 25	function 1 -> node 14	function 2 -> node 14	function 3 -> node 9	
+#Mapping 39:
+function 0 -> node 25	function 1 -> node 15	function 2 -> node 15	function 3 -> node 9	
+#Mapping 40:
+function 0 -> node 25	function 1 -> node 15	function 2 -> node 14	function 3 -> node 9	
+#Mapping 41:
+function 0 -> node 9	function 1 -> node 9	function 2 -> node 9	function 3 -> node 9	
+#Mapping 42:
+function 0 -> node 14	function 1 -> node 9	function 2 -> node 9	function 3 -> node 9	
+#Mapping 43:
+function 0 -> node 15	function 1 -> node 9	function 2 -> node 9	function 3 -> node 9	
+#Mapping 44:
+function 0 -> node 14	function 1 -> node 14	function 2 -> node 14	function 3 -> node 9	
+#Mapping 45:
+function 0 -> node 15	function 1 -> node 14	function 2 -> node 14	function 3 -> node 9	
+#Mapping 46:
+function 0 -> node 15	function 1 -> node 15	function 2 -> node 14	function 3 -> node 9	
+#Mapping 47:
+function 0 -> node 15	function 1 -> node 15	function 2 -> node 15	function 3 -> node 9	
+#Mapping 48:
+function 0 -> node 25	function 1 -> node 14	function 2 -> node 14	function 3 -> node 14	
+#Mapping 49:
+function 0 -> node 15	function 1 -> node 14	function 2 -> node 14	function 3 -> node 14	
+#Mapping 50:
+function 0 -> node 14	function 1 -> node 14	function 2 -> node 14	function 3 -> node 14	
+#Mapping 51:
+function 0 -> node 25	function 1 -> node 15	function 2 -> node 14	function 3 -> node 14	
+#Mapping 52:
+function 0 -> node 25	function 1 -> node 15	function 2 -> node 15	function 3 -> node 15	
+#Mapping 53:
+function 0 -> node 25	function 1 -> node 15	function 2 -> node 15	function 3 -> node 14	
+#Mapping 54:
+function 0 -> node 15	function 1 -> node 15	function 2 -> node 15	function 3 -> node 14	
+##Mapping flow: 2
+#Source node: 6
+#Destination node: 2
+##Selected route: [6, 3, 1, 43, 31, 25, 2]
+#Mapping 1:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 3	function 3 -> node 3	
+#Mapping 2:
+function 0 -> node 3	function 1 -> node 43	function 2 -> node 43	function 3 -> node 43	
+#Mapping 3:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 3	function 3 -> node 43	
+#Mapping 4:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 3	function 3 -> node 31	
+#Mapping 5:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 3	function 3 -> node 1	
+#Mapping 6:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 3	function 3 -> node 25	
+#Mapping 7:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 43	function 3 -> node 43	
+#Mapping 8:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 1	function 3 -> node 43	
+#Mapping 9:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 1	function 3 -> node 25	
+#Mapping 10:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 1	function 3 -> node 31	
+#Mapping 11:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 43	function 3 -> node 25	
+#Mapping 12:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 25	function 3 -> node 25	
+#Mapping 13:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 31	function 3 -> node 25	
+#Mapping 14:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 43	function 3 -> node 31	
+#Mapping 15:
+function 0 -> node 3	function 1 -> node 3	function 2 -> node 31	function 3 -> node 31	
+#Mapping 16:
+function 0 -> node 3	function 1 -> node 1	function 2 -> node 43	function 3 -> node 25	
+#Mapping 17:
+function 0 -> node 3	function 1 -> node 43	function 2 -> node 43	function 3 -> node 25	
+#Mapping 18:
+function 0 -> node 3	function 1 -> node 43	function 2 -> node 25	function 3 -> node 25	
+#Mapping 19:
+function 0 -> node 3	function 1 -> node 43	function 2 -> node 31	function 3 -> node 25	
+#Mapping 20:
+function 0 -> node 3	function 1 -> node 1	function 2 -> node 31	function 3 -> node 25	
+#Mapping 21:
+function 0 -> node 3	function 1 -> node 31	function 2 -> node 31	function 3 -> node 25	
+#Mapping 22:
+function 0 -> node 3	function 1 -> node 31	function 2 -> node 25	function 3 -> node 25	
+#Mapping 23:
+function 0 -> node 3	function 1 -> node 25	function 2 -> node 25	function 3 -> node 25	
+#Mapping 24:
+function 0 -> node 3	function 1 -> node 1	function 2 -> node 25	function 3 -> node 25	
+#Mapping 25:
+function 0 -> node 3	function 1 -> node 1	function 2 -> node 31	function 3 -> node 31	
+#Mapping 26:
+function 0 -> node 3	function 1 -> node 1	function 2 -> node 43	function 3 -> node 31	
+#Mapping 27:
+function 0 -> node 3	function 1 -> node 1	function 2 -> node 43	function 3 -> node 43	
+#Mapping 28:
+function 0 -> node 3	function 1 -> node 43	function 2 -> node 43	function 3 -> node 31	
+#Mapping 29:
+function 0 -> node 3	function 1 -> node 43	function 2 -> node 31	function 3 -> node 31	
+#Mapping 30:
+function 0 -> node 3	function 1 -> node 31	function 2 -> node 31	function 3 -> node 31	
+#Mapping 31:
+function 0 -> node 1	function 1 -> node 43	function 2 -> node 31	function 3 -> node 25	
+#Mapping 32:
+function 0 -> node 43	function 1 -> node 43	function 2 -> node 31	function 3 -> node 25	
+#Mapping 33:
+function 0 -> node 1	function 1 -> node 31	function 2 -> node 31	function 3 -> node 25	
+#Mapping 34:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 25	
+#Mapping 35:
+function 0 -> node 43	function 1 -> node 31	function 2 -> node 31	function 3 -> node 25	
+#Mapping 36:
+function 0 -> node 43	function 1 -> node 31	function 2 -> node 25	function 3 -> node 25	
+#Mapping 37:
+function 0 -> node 1	function 1 -> node 31	function 2 -> node 25	function 3 -> node 25	
+#Mapping 38:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 25	function 3 -> node 25	
+#Mapping 39:
+function 0 -> node 43	function 1 -> node 25	function 2 -> node 25	function 3 -> node 25	
+#Mapping 40:
+function 0 -> node 25	function 1 -> node 25	function 2 -> node 25	function 3 -> node 25	
+#Mapping 41:
+function 0 -> node 31	function 1 -> node 25	function 2 -> node 25	function 3 -> node 25	
+#Mapping 42:
+function 0 -> node 1	function 1 -> node 25	function 2 -> node 25	function 3 -> node 25	
+#Mapping 43:
+function 0 -> node 43	function 1 -> node 43	function 2 -> node 25	function 3 -> node 25	
+#Mapping 44:
+function 0 -> node 1	function 1 -> node 43	function 2 -> node 25	function 3 -> node 25	
+#Mapping 45:
+function 0 -> node 43	function 1 -> node 43	function 2 -> node 43	function 3 -> node 25	
+#Mapping 46:
+function 0 -> node 1	function 1 -> node 43	function 2 -> node 43	function 3 -> node 25	
+#Mapping 47:
+function 0 -> node 43	function 1 -> node 43	function 2 -> node 31	function 3 -> node 31	
+#Mapping 48:
+function 0 -> node 1	function 1 -> node 43	function 2 -> node 31	function 3 -> node 31	
+#Mapping 49:
+function 0 -> node 43	function 1 -> node 43	function 2 -> node 43	function 3 -> node 31	
+#Mapping 50:
+function 0 -> node 1	function 1 -> node 43	function 2 -> node 43	function 3 -> node 31	
+#Mapping 51:
+function 0 -> node 1	function 1 -> node 43	function 2 -> node 43	function 3 -> node 43	
+#Mapping 52:
+function 0 -> node 1	function 1 -> node 31	function 2 -> node 31	function 3 -> node 31	
+#Mapping 53:
+function 0 -> node 31	function 1 -> node 31	function 2 -> node 31	function 3 -> node 31	
+#Mapping 54:
+function 0 -> node 43	function 1 -> node 31	function 2 -> node 31	function 3 -> node 31	
+##Mapping flow: 3
+#Source node: 87
+#Destination node: 43
+##Selected route: [87, 67, 34, 12, 2, 1, 43]
+#Mapping 1:
+function 0 -> node 1	function 1 -> node 1	function 2 -> node 1	function 3 -> node 1	
+#Mapping 2:
+function 0 -> node 67	function 1 -> node 12	function 2 -> node 12	function 3 -> node 12	
+#Mapping 3:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 67	function 3 -> node 12	
+#Mapping 4:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 67	function 3 -> node 1	
+#Mapping 5:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 67	function 3 -> node 34	
+#Mapping 6:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 67	function 3 -> node 67	
+#Mapping 7:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 67	function 3 -> node 2	
+#Mapping 8:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 12	function 3 -> node 12	
+#Mapping 9:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 34	function 3 -> node 12	
+#Mapping 10:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 34	function 3 -> node 1	
+#Mapping 11:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 34	function 3 -> node 2	
+#Mapping 12:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 12	function 3 -> node 2	
+#Mapping 13:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 2	function 3 -> node 2	
+#Mapping 14:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 1	function 3 -> node 1	
+#Mapping 15:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 12	function 3 -> node 1	
+#Mapping 16:
+function 0 -> node 67	function 1 -> node 67	function 2 -> node 2	function 3 -> node 1	
+#Mapping 17:
+function 0 -> node 67	function 1 -> node 2	function 2 -> node 2	function 3 -> node 2	
+#Mapping 18:
+function 0 -> node 67	function 1 -> node 34	function 2 -> node 2	function 3 -> node 2	
+#Mapping 19:
+function 0 -> node 67	function 1 -> node 12	function 2 -> node 2	function 3 -> node 2	
+#Mapping 20:
+function 0 -> node 67	function 1 -> node 12	function 2 -> node 12	function 3 -> node 2	
+#Mapping 21:
+function 0 -> node 67	function 1 -> node 34	function 2 -> node 12	function 3 -> node 2	
+#Mapping 22:
+function 0 -> node 67	function 1 -> node 12	function 2 -> node 2	function 3 -> node 1	
+#Mapping 23:
+function 0 -> node 67	function 1 -> node 2	function 2 -> node 2	function 3 -> node 1	
+#Mapping 24:
+function 0 -> node 67	function 1 -> node 34	function 2 -> node 2	function 3 -> node 1	
+#Mapping 25:
+function 0 -> node 67	function 1 -> node 12	function 2 -> node 12	function 3 -> node 1	
+#Mapping 26:
+function 0 -> node 67	function 1 -> node 34	function 2 -> node 12	function 3 -> node 12	
+#Mapping 27:
+function 0 -> node 67	function 1 -> node 34	function 2 -> node 12	function 3 -> node 1	
+#Mapping 28:
+function 0 -> node 67	function 1 -> node 12	function 2 -> node 1	function 3 -> node 1	
+#Mapping 29:
+function 0 -> node 67	function 1 -> node 1	function 2 -> node 1	function 3 -> node 1	
+#Mapping 30:
+function 0 -> node 67	function 1 -> node 2	function 2 -> node 1	function 3 -> node 1	
+#Mapping 31:
+function 0 -> node 67	function 1 -> node 34	function 2 -> node 1	function 3 -> node 1	
+#Mapping 32:
+function 0 -> node 34	function 1 -> node 12	function 2 -> node 1	function 3 -> node 1	
+#Mapping 33:
+function 0 -> node 12	function 1 -> node 12	function 2 -> node 1	function 3 -> node 1	
+#Mapping 34:
+function 0 -> node 2	function 1 -> node 2	function 2 -> node 1	function 3 -> node 1	
+#Mapping 35:
+function 0 -> node 34	function 1 -> node 2	function 2 -> node 1	function 3 -> node 1	
+#Mapping 36:
+function 0 -> node 12	function 1 -> node 2	function 2 -> node 1	function 3 -> node 1	
+#Mapping 37:
+function 0 -> node 12	function 1 -> node 1	function 2 -> node 1	function 3 -> node 1	
+#Mapping 38:
+function 0 -> node 2	function 1 -> node 1	function 2 -> node 1	function 3 -> node 1	
+#Mapping 39:
+function 0 -> node 34	function 1 -> node 1	function 2 -> node 1	function 3 -> node 1	
+#Mapping 40:
+function 0 -> node 12	function 1 -> node 2	function 2 -> node 2	function 3 -> node 1	
+#Mapping 41:
+function 0 -> node 2	function 1 -> node 2	function 2 -> node 2	function 3 -> node 1	
+#Mapping 42:
+function 0 -> node 34	function 1 -> node 2	function 2 -> node 2	function 3 -> node 1	
+#Mapping 43:
+function 0 -> node 12	function 1 -> node 12	function 2 -> node 2	function 3 -> node 1	
+#Mapping 44:
+function 0 -> node 34	function 1 -> node 12	function 2 -> node 2	function 3 -> node 1	
+#Mapping 45:
+function 0 -> node 12	function 1 -> node 12	function 2 -> node 12	function 3 -> node 1	
+#Mapping 46:
+function 0 -> node 34	function 1 -> node 12	function 2 -> node 12	function 3 -> node 1	
+#Mapping 47:
+function 0 -> node 12	function 1 -> node 12	function 2 -> node 2	function 3 -> node 2	
+#Mapping 48:
+function 0 -> node 34	function 1 -> node 12	function 2 -> node 2	function 3 -> node 2	
+#Mapping 49:
+function 0 -> node 12	function 1 -> node 12	function 2 -> node 12	function 3 -> node 2	
+#Mapping 50:
+function 0 -> node 34	function 1 -> node 12	function 2 -> node 12	function 3 -> node 2	
+#Mapping 51:
+function 0 -> node 34	function 1 -> node 12	function 2 -> node 12	function 3 -> node 12	
+#Mapping 52:
+function 0 -> node 12	function 1 -> node 2	function 2 -> node 2	function 3 -> node 2	
+#Mapping 53:
+function 0 -> node 2	function 1 -> node 2	function 2 -> node 2	function 3 -> node 2	
+#Mapping 54:
+function 0 -> node 34	function 1 -> node 2	function 2 -> node 2	function 3 -> node 2	
