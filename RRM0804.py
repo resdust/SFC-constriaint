@@ -18,7 +18,7 @@ import numpy as np
 N = 100 # number of nodes
 B_sfc = [10,10,10] # service function chian Brandwidth
 B_node = 1 # max number of flow on one node
-L = 5 # max route Length
+L = 8 # max route Length
 T = [3,3,3] # number of functions
 F = len(T) # number of flows
 S = [50,6,87]
@@ -62,6 +62,11 @@ def load_edges(file):
 
     print('===Loaded topology with '+str(len(topo))+' nodes===')
     return topo,B
+
+# sum of adjacent edges (z3 variable)
+def edges_adj(E,i,f):
+    adjs = [E[f][i][j] for j in range(len(edges[i]))]
+    return Sum(adjs)
 
 # sum of outcoming edges (z3 variable)
 def edges_out(E,i,f):
@@ -107,9 +112,32 @@ def search_b(route):
         b_nodes.append(b)
     return b_nodes
 
+def dfs(E,s,d,S=None,route=None,res=None):
+    if S is None:
+        S=set()
+    if route is None:
+        route=[]
+        res=[]
+    route.append(s)
+    S.add(s)
+    for u in E[s]:
+        if (u in S) or (u in route) or (len(route)>L):
+            continue
+        if ((u==d) and (u not in route)):
+            res.append(route+[u])
+            break
+        # if len(res)>1000:
+        #     break
+        S.add(u)
+        dfs(E,u,d,S,route,res)
+        route.pop()
+        S.remove(u)
+
+    return res
+
 # generate available route
 def get_solver():
-    solver = Solver()
+    # solver = Solver()
     constrains = []
     # generate edges in z3 variables
 
@@ -130,6 +158,8 @@ def get_solver():
         E.append(flow)
     
     for f in range(F):
+        routes = dfs(edges,S[f],D[f])
+
         # cons: incoming equals outcoming
         for i in range(N):
             if (i != S[f] and i != D[f]):
@@ -150,12 +180,12 @@ def get_solver():
         x = edges_out(E,S[f],f)
         y = edges_in(E,S[f],f)
         constrains.append(x==1)
-        constrains.append(y==0)
+        # constrains.append(y==0)
 
         # cons: only 1 route comes inro from Source
         x = edges_out(E,D[f],f)
         y = edges_in(E,D[f],f)
-        constrains.append(x==0)
+        # constrains.append(x==0)
         constrains.append(y==1)
 
         # cons: length constraint
@@ -255,11 +285,7 @@ def get_mapping(routes):
     return 
 
 def get_routes(solver):
-    log('Finding route')
-    if solver.check()!=sat:
-        log('No solution!')
-        return None
-    
+    log('Finding route')    
     routes = []
     count = 0
     while(solver.check()==sat):
@@ -282,6 +308,10 @@ def get_routes(solver):
 
     log('Route')
     log('Total solution: %d' %(len(routes)))
+    if len(routes)==0:
+        log('No solution!')
+        return None
+        
     for route in routes:
         count = count + 1
         log('Solution %d:' %(count))
