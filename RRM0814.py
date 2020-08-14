@@ -1,4 +1,5 @@
 ######
+# 8.13 add bilateral topology
 # 8.2 multi flows with multi function chains
 # get_route -> every possible routes for each flow
 #           length<=L
@@ -16,15 +17,15 @@ import numpy as np
 
 # define global variables
 N = 100 # number of nodes
-B_sfc = [10,10,10] # service function chian Brandwidth
+B_sfc = [30,30,30] # service function chian Brandwidth
 B_node = 1 # max number of flow on one node
 L = 8 # max route Length
 T = [3,3,3] # number of functions
 F = len(T) # number of flows
 S = [50,6,87]
 D = [0,2,43]
-# S = [int(random.random()*N) for i in range(F)]
-# D = [int(random.random()*N) for i in range(F)]
+S = [int(random.random()*N) for i in range(F)]
+D = [int(random.random()*N) for i in range(F)]
 c = [10,20,20,10,10] # service function CPU requirement
 file = 'RRM_result_3_3.txt'
 
@@ -63,19 +64,14 @@ def load_edges(file):
     print('===Loaded topology with '+str(len(topo))+' nodes===')
     return topo,B
 
-# sum of adjacent edges (z3 variable)
-def edges_adj(E,i,f):
-    adjs = [E[f][i][j] for j in range(len(edges[i]))]
-    return Sum(adjs)
-
 # sum of outcoming edges (z3 variable)
 def edges_out(E,i,f):
-    outs = [E[f][i][j] for j in range(len(edges[i]))]
+    outs = [E[f][i][j] for j in range(len(E[f][i]))]
     return Sum(outs)
 
 # sum of incoming edges (z3)
 def edges_in(E,i,f):
-    in_nodes = search_in(i)
+    in_nodes = search_in(i,f)
     if in_nodes:
         ins = [E[f][node[0]][node[1]] for node in in_nodes]
         y = Sum(ins)
@@ -87,18 +83,21 @@ def edges_in(E,i,f):
 def edges_node(E,i):
     nodes = []
     for f in range(F):
-        outs = [E[f][i][j] for j in range(len(edges[i]))]
+        outs = E[f][i]
         nodes+=outs
     return Sum(nodes)
 
 # find incoming edges to node i
-def search_in(i):
+def search_in(i,f):
     nodes = []
-    for j in range(len(edges)):
+    for j in range(N):
         e = edges[j]
+        count = 0
         for k in range(len(e)):
-            if e[k]==i:
-                nodes.append([j,k])
+            if B_sfc[f]<=search_b([j,e[k]])[0]:
+                if e[k]==i:
+                    nodes.append([j,count])
+                count = count+1
     return nodes
 
 # find Brandwith for edges in route
@@ -137,7 +136,7 @@ def dfs(E,s,d,S=None,route=None,res=None):
 
 # generate available route
 def get_solver():
-    # solver = Solver()
+    solver = Solver()
     constrains = []
     # generate edges in z3 variables
 
@@ -149,6 +148,9 @@ def get_solver():
             count = 0
             for e in edges[i]:
                 name = 'u_'+str(f)+'_'+str(i)+'_'+str(e)
+                # constraint brandwidth
+                if B_sfc[f]>search_b([i,e])[0]:
+                    continue
                 tmp.append(Int(name))
                 edge = tmp[count]
                 cons = Or(edge==1,edge==0)
@@ -156,11 +158,9 @@ def get_solver():
                 count = count + 1
             flow.append(tmp)
         E.append(flow)
-    
-    for f in range(F):
-        routes = dfs(edges,S[f],D[f])
 
-        # cons: incoming equals outcoming
+    # available = [[] for i in range(F)]
+    for f in range(F):
         for i in range(N):
             if (i != S[f] and i != D[f]):
                 x = edges_out(E,i,f)# O_i
@@ -180,16 +180,16 @@ def get_solver():
         x = edges_out(E,S[f],f)
         y = edges_in(E,S[f],f)
         constrains.append(x==1)
-        # constrains.append(y==0)
+        constrains.append(y==0)
 
         # cons: only 1 route comes inro from Source
         x = edges_out(E,D[f],f)
         y = edges_in(E,D[f],f)
-        # constrains.append(x==0)
+        constrains.append(x==0)
         constrains.append(y==1)
 
         # cons: length constraint
-        ls = [E[f][i][count] for i in range(N) for count in range(len(edges[i]))]
+        ls = [E[f][i][count] for i in range(N) for count in range(len(E[f][i]))]
         length = Sum(ls)
         cons = length<=L
         constrains.append(cons)
@@ -224,7 +224,7 @@ def get_mapping(routes):
                 if len(r) == 0:
                     continue
                 log('##Selected route: '+str(r))
-                B_edges = search_b(r)
+                # B_edges = search_b(r)
                 l = len(r)-2
                 # generate nodes (components) mapping in z3 variables
                 b = [[Int('b_'+str(i)+str(j)) for j in range(T[f])] for i in range(l)]
@@ -257,8 +257,8 @@ def get_mapping(routes):
                     resource = [b[i][j]*c[j] for j in range(T[f])]
                     solver.append(Sum(resource)<=C[i])
 
-                    # cons4: brandwidth
-                    solver.append(B_sfc[f]<=B_edges[i])
+                    # # cons4: brandwidth
+                    # solver.append(B_sfc[f]<=B_edges[i])
 
                 count = 0
                 while(solver.check()==sat):
@@ -297,13 +297,21 @@ def get_routes(solver):
                 # print("{}".format(d.name()),end=', ')
                 paths.append(d.name())   
                 # cons6: no repeat edge
-                f= d.name().split('_')[1]
-                cons[int(f)].append(d()==0)
-        cons = [And(c) for c in cons]
-        solver.append(Or(cons))
+                d_arr = d.name().split('_')
+                f= int(d_arr[1])
+                cons[f].append(d()==0)
+                if int(d_arr[2])==S[f] and int(d_arr[3])==D[f]:
+                    solver.append(d()==0)
+        
         route, wrong = check_routes(paths) # a solution for all the flows
-        if wrong==0: # check if the solution contains a wrong route
+        if sum(wrong)==0: # check if the solution contains a wrong route
             routes.append(route) 
+
+        for f in range(F):
+            cons[f] = Or(cons[f])
+            if wrong[f]:
+                solver.append(cons[f])            
+        solver.append(Or(cons))
         print('======')
 
     log('Route')
@@ -323,7 +331,7 @@ def get_routes(solver):
 
 def check_routes(paths):
     routes = []
-    wrong = 0
+    wrong = [0]*F
     for f in range(F):
         log('#Flow '+str(f+1)+': ')
         s = S[f]
@@ -348,7 +356,9 @@ def check_routes(paths):
         while second in flow:
             log(second,sep='->')
             route.append(int(second))
+            key = second
             second = flow[second]
+            flow.pop(key)
         route.append(int(second))
         if second == str(d) and len(route)>=T[f]+2:
             log(str(d))
@@ -357,12 +367,12 @@ def check_routes(paths):
             log(second)
             log('###Not reaching destination, wrong route!')
             route = []
-            wrong = 1
+            wrong[f] = 1
         else:
             log(str(d))
             log('###Too short lenghth, wrong route!')
             route = []
-            wrong = 1
+            wrong[f] = 1
         routes.append(route)
 
     return routes, wrong
