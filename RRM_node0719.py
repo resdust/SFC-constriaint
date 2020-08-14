@@ -17,6 +17,7 @@ D = [0]
 # load topology
 def load_edges(file):
     edges = {} 
+    B = {}
     topo = [] # topo[i] concludes the nodes connected to node i
     with open(file) as f:
         datas = f.readlines()
@@ -24,11 +25,12 @@ def load_edges(file):
     for d in datas:
         d = d.split()
         d = [int(x) for x in d]
-        if d[0] in edges:
-            edges[d[0]].append(d[1])
+        i,j,b = d[0],d[1],d[2]
+        if i in edges:
+            edges[i].append([j,b])
         else:
-            edges[d[0]] = [d[1]]
-        
+            edges[i] = [[j,b]]
+
     i = 0
     keys = list(edges.keys())
     keys.sort()
@@ -36,11 +38,12 @@ def load_edges(file):
         while(i!= key):
             i = i+1
             topo.append([])
-        topo.append(edges[key])
+        topo.append([j[0] for j in edges[key]])
+        B[key] = [j[1] for j in edges[key]]
         i = i+1
 
     print('===Loaded topology with '+str(len(topo))+' nodes===')
-    return topo
+    return topo,B
 
 # incoming nodes of C[i][j]
 def nodes_out(i,j,C):
@@ -160,32 +163,33 @@ def gen_flow():
     return solvers
 
 def get_solution(solvers):
-    res_file.write('===Flow %d===\n' %(i))
-    for i in range(len(solvers)):
-        solver = solvers[i]
-        if solver.check()!=sat:
-            print('No solution!')
-            res_file.write('No solution!')
-            exit(0)
-        
-        routes = []
-        count = 0
-        while(solver.check()==sat):
-            print('Solution %d:' %(count+1))
+    for i in range(F):
+        res_file.write('===Flow %d===\n' %(i))
+        for i in range(len(solvers)):
+            solver = solvers[i]
+            if solver.check()!=sat:
+                print('No solution!')
+                res_file.write('No solution!')
+                exit(0)
             
-            count = count + 1
-            m = solver.model()
-            route = []
-            cons = []
-            for d in m.decls():
-                if m[d]==1 and d.name()[0]=='c':
-                    print("{}={}".format(d.name(),m[d]),end=', ')
-                    route.append(d.name())
-                    cons.append(d()==0)
-            routes.append(route)
-            solver.append(Or(cons))
-            plot_routes(route,count,i)
-            print('======')
+            routes = []
+            count = 0
+            while(solver.check()==sat):
+                print('Solution %d:' %(count+1))
+                
+                count = count + 1
+                m = solver.model()
+                route = []
+                cons = []
+                for d in m.decls():
+                    if m[d]==1 and d.name()[0]=='c':
+                        print("{}={}".format(d.name(),m[d]),end=', ')
+                        route.append(d.name())
+                        cons.append(d()==0)
+                routes.append(route)
+                solver.append(Or(cons))
+                plot_routes(route,count,i)
+                print('======')
     return routes
 
 def plot_routes(route,count,i):
@@ -238,6 +242,6 @@ def main():
     print('total time used:',times[-1]-times[0])
 
 res_file = open('RRM_result.txt','w',encoding='utf-8')
-edges = load_edges('network.txt')
+edges,B = load_edges('network-brand.txt')
 main()
 res_file.close()
