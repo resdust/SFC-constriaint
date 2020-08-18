@@ -1,11 +1,13 @@
 ######
+# 8.15 change to node constraint
 # 8.13 add bilateral topology
 # 8.2 multi flows with multi function chains
 # get_route -> every possible routes for each flow
 #           length<=L
 #           length>=T+1
 # get_mapping -> mapping SFC to every possible route (length>=T+1)
-# -[] 改边的变量为节点变量，减少变量个数，加快求解
+# -[√] 改边的变量为节点变量，减少变量个数，加快求解
+# -[x] reachability constraint?
 ######
 
 from z3 import *
@@ -324,8 +326,8 @@ def get_routes(solver):
         print('======')
 
     log('Route')
-    log('Total solution: %d' %(len(routes)))
-    log('Wrong solution number: %d' %(count-len(routes)))
+    log('#Total solution: %d' %(len(routes)))
+    log('#Wrong solution number: %d' %(count-len(routes)))
     if len(routes)==0:
         log('No solution!')
         return None

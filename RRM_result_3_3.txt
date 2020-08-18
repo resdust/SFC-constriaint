@@ -1,0 +1,2134 @@
+#Length of function chain: 3
+#Number of flows: 3
+Finding route
+Flow: 1
+#loop: 23,18,24
+###Too short lenghth, wrong route!
+Flow: 1
+#loop: 70,75,55
+###Too short lenghth, wrong route!
+Route
+Total solution: 154
+Wrong solution number: 2
+Solution 0:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 1:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 2:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 3:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 4:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 5:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 6:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 7:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 8:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 9:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 10:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 11:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 12:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 13:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 14:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 15:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 16:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 17:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 18:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 19:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 20:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 21:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 22:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 23:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 24:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 25:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 26:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 27:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 28:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 29:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 30:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 31:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 32:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 33:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 34:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 35:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 36:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 37:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 38:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 39:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 40:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 41:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 42:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 43:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 44:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 45:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 46:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 47:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 48:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 49:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 50:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 51:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 52:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 53:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 54:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 55:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 56:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 57:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 58:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 59:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 60:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 61:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 62:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 63:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 64:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->3->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 65:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 66:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 67:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 68:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 69:
+#Flow 1: 
+50->20->7->5->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 70:
+#Flow 1: 
+50->20->7->5->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 71:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 72:
+#Flow 1: 
+50->20->7->12->41->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 73:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 74:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 75:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 76:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 77:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 78:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 79:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 80:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 81:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 82:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 83:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 84:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 85:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 86:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 87:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 88:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 89:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 90:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->14->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 91:
+#Flow 1: 
+50->20->7->5->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 92:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 93:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 94:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 95:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->22->26->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 96:
+#Flow 1: 
+50->20->7->12->41->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 97:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 98:
+#Flow 1: 
+50->20->7->5->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 99:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 100:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 101:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 102:
+#Flow 1: 
+50->48->22->10->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 103:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 104:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 105:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 106:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->14->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 107:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 108:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 109:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->14->15->17->44->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 110:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 111:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->3->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 112:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->3->9->61->12->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 113:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->3->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 114:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->3->9->61->12->2
+#Flow 3: 
+87->43->67->34->25->43
+Solution 115:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 116:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 117:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->13->57->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 118:
+#Flow 1: 
+50->48->22->10->91->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 119:
+#Flow 1: 
+50->48->22->10->29->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 120:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 121:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 122:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->3->46->39->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 123:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->3->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 124:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 125:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 126:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 127:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 128:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 129:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 130:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 131:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 132:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 133:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 134:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 135:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 136:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->13->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 137:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->29->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 138:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->84->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 139:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 140:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 141:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 142:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->13->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 143:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->29->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 144:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->84->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 145:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->3->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 146:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->3->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 147:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 148:
+#Flow 1: 
+50->48->82->3->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 149:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 150:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->22->10->16->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 151:
+#Flow 1: 
+50->20->11->3->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 152:
+#Flow 1: 
+50->20->11->72->41->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Solution 153:
+#Flow 1: 
+50->31->14->9->0
+#Flow 2: 
+6->22->10->5->7->2
+#Flow 3: 
+87->43->67->70->55->25->43
+Time of finding routes (first mapping):50.34375
+Mapping
+Solution 0
+##Mapping flow 1 :
+#Source node: 50
+#Destination node: 0
+##Selected route: [50, 48, 22, 10, 29, 0]
+#Mapping 1:
+function 0 -> node 48	
+function 1 -> node 10	
+function 2 -> node 29	
+------
+#Mapping 2:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 48	
+------
+#Mapping 3:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 29	
+------
+#Mapping 4:
+function 0 -> node 48	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 5:
+function 0 -> node 10	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 6:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 7:
+function 0 -> node 22	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 8:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 10	
+------
+#Mapping 9:
+function 0 -> node 10	
+function 1 -> node 10	
+function 2 -> node 29	
+------
+#Mapping 10:
+function 0 -> node 22	
+function 1 -> node 10	
+function 2 -> node 29	
+------
+##Mapping flow 2 :
+#Source node: 6
+#Destination node: 2
+##Selected route: [6, 3, 46, 39, 7, 2]
+#Mapping 1:
+function 0 -> node 3	
+function 1 -> node 3	
+function 2 -> node 39	
+------
+#Mapping 2:
+function 0 -> node 3	
+function 1 -> node 3	
+function 2 -> node 3	
+------
+#Mapping 3:
+function 0 -> node 3	
+function 1 -> node 3	
+function 2 -> node 7	
+------
+#Mapping 4:
+function 0 -> node 3	
+function 1 -> node 39	
+function 2 -> node 7	
+------
+#Mapping 5:
+function 0 -> node 3	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 6:
+function 0 -> node 39	
+function 1 -> node 39	
+function 2 -> node 7	
+------
+#Mapping 7:
+function 0 -> node 46	
+function 1 -> node 39	
+function 2 -> node 7	
+------
+#Mapping 8:
+function 0 -> node 39	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 9:
+function 0 -> node 46	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 10:
+function 0 -> node 7	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+##Mapping flow 3 :
+#Source node: 87
+#Destination node: 43
+##Selected route: [87, 43, 67, 70, 55, 25, 43]
+#Mapping 1:
+function 0 -> node 70	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 2:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 43	
+------
+#Mapping 3:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 70	
+------
+#Mapping 4:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 55	
+------
+#Mapping 5:
+function 0 -> node 43	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 6:
+function 0 -> node 43	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 7:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 8:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 9:
+function 0 -> node 67	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 10:
+function 0 -> node 67	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 11:
+function 0 -> node 55	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 12:
+function 0 -> node 67	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 13:
+function 0 -> node 67	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 14:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 15:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 25	
+------
+#Mapping 16:
+function 0 -> node 43	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 17:
+function 0 -> node 70	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 18:
+function 0 -> node 25	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 19:
+function 0 -> node 70	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 20:
+function 0 -> node 55	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 21:
+function 0 -> node 70	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 22:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 23:
+function 0 -> node 55	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 24:
+function 0 -> node 70	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 25:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 26:
+function 0 -> node 55	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 27:
+function 0 -> node 70	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 28:
+function 0 -> node 25	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 29:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 30:
+function 0 -> node 43	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+======
+Solution 1
+##Mapping flow 1 :
+#Source node: 50
+#Destination node: 0
+##Selected route: [50, 20, 11, 3, 0]
+#Mapping 1:
+function 0 -> node 20	
+function 1 -> node 20	
+function 2 -> node 20	
+------
+#Mapping 2:
+function 0 -> node 20	
+function 1 -> node 20	
+function 2 -> node 3	
+------
+##Mapping flow 2 :
+#Source node: 6
+#Destination node: 2
+##Selected route: [6, 29, 10, 5, 7, 2]
+#Mapping 1:
+function 0 -> node 29	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 2:
+function 0 -> node 10	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 3:
+function 0 -> node 10	
+function 1 -> node 5	
+function 2 -> node 7	
+------
+#Mapping 4:
+function 0 -> node 5	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 5:
+function 0 -> node 5	
+function 1 -> node 5	
+function 2 -> node 7	
+------
+#Mapping 6:
+function 0 -> node 29	
+function 1 -> node 5	
+function 2 -> node 7	
+------
+#Mapping 7:
+function 0 -> node 7	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 8:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 7	
+------
+#Mapping 9:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 5	
+------
+#Mapping 10:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+##Mapping flow 3 :
+#Source node: 87
+#Destination node: 43
+##Selected route: [87, 43, 67, 34, 25, 43]
+#Mapping 1:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 43	
+------
+#Mapping 2:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 25	
+------
+#Mapping 3:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 4:
+function 0 -> node 43	
+function 1 -> node 34	
+function 2 -> node 25	
+------
+#Mapping 5:
+function 0 -> node 34	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 6:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 7:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 8:
+function 0 -> node 67	
+function 1 -> node 34	
+function 2 -> node 25	
+------
+#Mapping 9:
+function 0 -> node 34	
+function 1 -> node 34	
+function 2 -> node 25	
+------
+#Mapping 10:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 34	
+------
+======
+Solution 2
+##Mapping flow 1 :
+#Source node: 50
+#Destination node: 0
+##Selected route: [50, 48, 82, 3, 0]
+#Mapping 1:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 48	
+------
+#Mapping 2:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 3	
+------
+##Mapping flow 2 :
+#Source node: 6
+#Destination node: 2
+##Selected route: [6, 29, 10, 5, 7, 2]
+#Mapping 1:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 2:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 7	
+------
+#Mapping 3:
+function 0 -> node 29	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 4:
+function 0 -> node 29	
+function 1 -> node 5	
+function 2 -> node 7	
+------
+#Mapping 5:
+function 0 -> node 5	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 6:
+function 0 -> node 10	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 7:
+function 0 -> node 7	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 8:
+function 0 -> node 10	
+function 1 -> node 5	
+function 2 -> node 7	
+------
+#Mapping 9:
+function 0 -> node 5	
+function 1 -> node 5	
+function 2 -> node 7	
+------
+#Mapping 10:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 5	
+------
+##Mapping flow 3 :
+#Source node: 87
+#Destination node: 43
+##Selected route: [87, 43, 67, 70, 55, 25, 43]
+#Mapping 1:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 43	
+------
+#Mapping 2:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 25	
+------
+#Mapping 3:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 70	
+------
+#Mapping 4:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 55	
+------
+#Mapping 5:
+function 0 -> node 43	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 6:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 7:
+function 0 -> node 43	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 8:
+function 0 -> node 67	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 9:
+function 0 -> node 70	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 10:
+function 0 -> node 70	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 11:
+function 0 -> node 25	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 12:
+function 0 -> node 67	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 13:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 14:
+function 0 -> node 70	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 15:
+function 0 -> node 55	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 16:
+function 0 -> node 55	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 17:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 18:
+function 0 -> node 55	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 19:
+function 0 -> node 55	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 20:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 21:
+function 0 -> node 43	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 22:
+function 0 -> node 43	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 23:
+function 0 -> node 25	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 24:
+function 0 -> node 67	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 25:
+function 0 -> node 67	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 26:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 27:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 28:
+function 0 -> node 70	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 29:
+function 0 -> node 70	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 30:
+function 0 -> node 70	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+======
+Solution 3
+##Mapping flow 1 :
+#Source node: 50
+#Destination node: 0
+##Selected route: [50, 20, 11, 72, 41, 0]
+#Mapping 1:
+function 0 -> node 20	
+function 1 -> node 20	
+function 2 -> node 20	
+------
+#Mapping 2:
+function 0 -> node 20	
+function 1 -> node 20	
+function 2 -> node 41	
+------
+#Mapping 3:
+function 0 -> node 20	
+function 1 -> node 41	
+function 2 -> node 41	
+------
+#Mapping 4:
+function 0 -> node 20	
+function 1 -> node 72	
+function 2 -> node 41	
+------
+#Mapping 5:
+function 0 -> node 72	
+function 1 -> node 41	
+function 2 -> node 41	
+------
+#Mapping 6:
+function 0 -> node 11	
+function 1 -> node 41	
+function 2 -> node 41	
+------
+#Mapping 7:
+function 0 -> node 41	
+function 1 -> node 41	
+function 2 -> node 41	
+------
+#Mapping 8:
+function 0 -> node 11	
+function 1 -> node 72	
+function 2 -> node 41	
+------
+#Mapping 9:
+function 0 -> node 72	
+function 1 -> node 72	
+function 2 -> node 41	
+------
+#Mapping 10:
+function 0 -> node 20	
+function 1 -> node 20	
+function 2 -> node 72	
+------
+##Mapping flow 2 :
+#Source node: 6
+#Destination node: 2
+##Selected route: [6, 29, 10, 16, 7, 2]
+#Mapping 1:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 2:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 7	
+------
+#Mapping 3:
+function 0 -> node 29	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 4:
+function 0 -> node 29	
+function 1 -> node 16	
+function 2 -> node 7	
+------
+#Mapping 5:
+function 0 -> node 16	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 6:
+function 0 -> node 10	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 7:
+function 0 -> node 7	
+function 1 -> node 7	
+function 2 -> node 7	
+------
+#Mapping 8:
+function 0 -> node 10	
+function 1 -> node 16	
+function 2 -> node 7	
+------
+#Mapping 9:
+function 0 -> node 16	
+function 1 -> node 16	
+function 2 -> node 7	
+------
+#Mapping 10:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 16	
+------
+##Mapping flow 3 :
+#Source node: 87
+#Destination node: 43
+##Selected route: [87, 43, 67, 34, 25, 43]
+#Mapping 1:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 43	
+------
+#Mapping 2:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 25	
+------
+#Mapping 3:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 4:
+function 0 -> node 43	
+function 1 -> node 34	
+function 2 -> node 25	
+------
+#Mapping 5:
+function 0 -> node 34	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 6:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 7:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 8:
+function 0 -> node 67	
+function 1 -> node 34	
+function 2 -> node 25	
+------
+#Mapping 9:
+function 0 -> node 34	
+function 1 -> node 34	
+function 2 -> node 25	
+------
+#Mapping 10:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 34	
+------
+======
+Solution 4
+##Mapping flow 1 :
+#Source node: 50
+#Destination node: 0
+##Selected route: [50, 48, 22, 10, 29, 0]
+#Mapping 1:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 48	
+------
+#Mapping 2:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 29	
+------
+#Mapping 3:
+function 0 -> node 48	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 4:
+function 0 -> node 48	
+function 1 -> node 10	
+function 2 -> node 29	
+------
+#Mapping 5:
+function 0 -> node 10	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 6:
+function 0 -> node 22	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 7:
+function 0 -> node 29	
+function 1 -> node 29	
+function 2 -> node 29	
+------
+#Mapping 8:
+function 0 -> node 22	
+function 1 -> node 10	
+function 2 -> node 29	
+------
+#Mapping 9:
+function 0 -> node 10	
+function 1 -> node 10	
+function 2 -> node 29	
+------
+#Mapping 10:
+function 0 -> node 48	
+function 1 -> node 48	
+function 2 -> node 10	
+------
+##Mapping flow 2 :
+#Source node: 6
+#Destination node: 2
+##Selected route: [6, 3, 9, 61, 12, 2]
+#Mapping 1:
+function 0 -> node 3	
+function 1 -> node 3	
+function 2 -> node 3	
+------
+#Mapping 2:
+function 0 -> node 3	
+function 1 -> node 3	
+function 2 -> node 12	
+------
+#Mapping 3:
+function 0 -> node 3	
+function 1 -> node 12	
+function 2 -> node 12	
+------
+#Mapping 4:
+function 0 -> node 3	
+function 1 -> node 61	
+function 2 -> node 12	
+------
+#Mapping 5:
+function 0 -> node 61	
+function 1 -> node 12	
+function 2 -> node 12	
+------
+#Mapping 6:
+function 0 -> node 9	
+function 1 -> node 12	
+function 2 -> node 12	
+------
+#Mapping 7:
+function 0 -> node 12	
+function 1 -> node 12	
+function 2 -> node 12	
+------
+#Mapping 8:
+function 0 -> node 9	
+function 1 -> node 61	
+function 2 -> node 12	
+------
+#Mapping 9:
+function 0 -> node 61	
+function 1 -> node 61	
+function 2 -> node 12	
+------
+#Mapping 10:
+function 0 -> node 3	
+function 1 -> node 3	
+function 2 -> node 61	
+------
+##Mapping flow 3 :
+#Source node: 87
+#Destination node: 43
+##Selected route: [87, 43, 67, 70, 55, 25, 43]
+#Mapping 1:
+function 0 -> node 70	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 2:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 43	
+------
+#Mapping 3:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 70	
+------
+#Mapping 4:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 55	
+------
+#Mapping 5:
+function 0 -> node 43	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 6:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 7:
+function 0 -> node 43	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 8:
+function 0 -> node 43	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 9:
+function 0 -> node 55	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 10:
+function 0 -> node 55	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 11:
+function 0 -> node 67	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 12:
+function 0 -> node 70	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 13:
+function 0 -> node 25	
+function 1 -> node 55	
+function 2 -> node 25	
+------
+#Mapping 14:
+function 0 -> node 67	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 15:
+function 0 -> node 67	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 16:
+function 0 -> node 70	
+function 1 -> node 70	
+function 2 -> node 55	
+------
+#Mapping 17:
+function 0 -> node 70	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 18:
+function 0 -> node 70	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 19:
+function 0 -> node 70	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 20:
+function 0 -> node 43	
+function 1 -> node 70	
+function 2 -> node 25	
+------
+#Mapping 21:
+function 0 -> node 43	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 22:
+function 0 -> node 43	
+function 1 -> node 43	
+function 2 -> node 25	
+------
+#Mapping 23:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 24:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 25:
+function 0 -> node 55	
+function 1 -> node 25	
+function 2 -> node 25	
+------
+#Mapping 26:
+function 0 -> node 67	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 27:
+function 0 -> node 25	
+function 1 -> node 55	
+function 2 -> node 55	
+------
+#Mapping 28:
+function 0 -> node 67	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 29:
+function 0 -> node 25	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+#Mapping 30:
+function 0 -> node 55	
+function 1 -> node 25	
+function 2 -> node 55	
+------
+======
+Time of function mapping (second mapping):4.796875
+Total time used:55.140625
