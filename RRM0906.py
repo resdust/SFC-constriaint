@@ -1,13 +1,14 @@
 ######
+# 9.12 Output the whole path rather than the function mapping 
+# 9.08 change 200 solutions as mapping scheme in every experiment
+# 9.08 fix the problem of not considering all the SFCs in mapping
 # 8.15 change to node constraint
 # 8.13 add bilateral topology
 # 8.2 multi flows with multi function chains
 # get_route -> every possible routes for each flow
-#           length<=L
+#           length<=L(=T+3)
 #           length>=T+1
 # get_mapping -> mapping SFC to every possible route (length>=T+1)
-# -[√] 改边的变量为节点变量，减少变量个数，加快求解
-# -[x] reachability constraint?
 ######
 
 from z3 import *
@@ -17,17 +18,17 @@ import numpy as np
 
 # define global variables
 N = 100 # number of nodes
-B_sfc = [30,30,30] # service function chian Brandwidth
+F = 3 # number of flows
+B_sfc = [10]*F # service function chian Brandwidth
 B_node = 1 # max number of flow on one node
-L = 6 # max route Length
-T = [3,3,3] # number of functions
-F = len(T) # number of flows
-S = [50,6,87]
-D = [0,2,43]
-# S = [int(random.random()*N) for i in range(F)]
-# D = [int(random.random()*N) for i in range(F)]
-c = [10,20,20,10,10] # service function CPU requirement
-file = 'RRM_result_3_3.txt'
+T = [3]*F # number of functions
+L = T[0]+3 # max route Length
+# S = [50,6,87]
+# D = [0,2,43]
+S = [int(random.random()*N) for i in range(F)]
+D = [int(random.random()*N) for i in range(F)]
+c = [int(random.random()*3)*10 for i in range(T[0])] # service function CPU requirement
+file = 'RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
 
 # load two-way topology
 def load_edges(file):
@@ -107,50 +108,6 @@ def search_b(route):
         b_nodes.append(b)
     return b_nodes
 
-# calculate the distance of every reachable node for Ci(src)
-# dijkstra算法实现，有向图和路由源点作为函数的输入，最短路径最为输出
-def dijkstra(src):
-    graph = []
-    # 补全有向拓扑图graph[i][j]为i到j的直接距离，不可达为inf，可达为1
-    for i in range(len(edges)):
-        nodes = edges[i]
-        line = [float('inf')]*N
-        for n in nodes:
-            line[n] = 1
-        graph.append(line)
-    nodes = [i for i in range(len(graph))]  # 获取图中所有节点
-    visited=[]  # 表示已经路由到最短路径的节点集合
-    if src in nodes:
-        visited.append(src)
-        nodes.remove(src)
-    else:
-        print ('source node out of range!')
-        return None
-    distance={src:0}  # 记录源节点到各个节点的距离
-    for i in nodes:
-        distance[i]=graph[src][i]  # 初始化
-    # path={src:{src:[]}}  # 记录源节点到每个节点的路径
-    k=pre=src
-    while nodes:
-        mid_distance=float('inf')
-        for v in visited:
-            for n in nodes:
-                new_distance = distance[v]+graph[v][n]
-                if new_distance < mid_distance:
-                    mid_distance=new_distance
-                    graph[src][n]=new_distance  # 进行距离更新
-                    k=n
-                    pre=v
-        distance[k]=mid_distance  # 最短路径
-        # path[src][k]=path[src][pre]+[k]
-        # 更新两个节点集合
-        if k in visited: # 没有新的可达节点
-            break
-        visited.append(k)
-        if k in nodes:
-            nodes.remove(k)
-    return distance
-
 # generate available route
 def get_solver():
     constrains = []
@@ -170,7 +127,7 @@ def get_solver():
 
     # available = [[] for i in range(F)]
     for f in range(F):
-        dis = dijkstra(D[f])
+        # dis = dijkstra(D[f])
         constrains.append(E[f][S[f]] == 1)
         constrains.append(E[f][D[f]] == 1)
 
@@ -217,32 +174,34 @@ def get_solver():
     return solver
 
 # map service functions to nodes except S & D
-def get_mapping(routes,num):
+def get_mapping(routes,s_num):
     log('Mapping')
     if routes==None:
         log('No routes to mapping!')
         return
 
     import numpy as np
-    routes = np.array(routes) 
-    routes = random.sample(list(routes),num)
-    print('Selected',len(routes),'solutions.')
+
+    solutions = []  # [[solution1:flow_1,...,flow_f],[solution2:...],...]
+                    # 200 mapping pairs, every item contains mappings of all the flows
+    count = 0 # total mapping count
+    r_num = int(s_num/len(routes)) # average mapping for one route scheme
 
     for s in range(len(routes)):
-        log('Solution %d' %s)
+        log('##Route scheme '+str(s))
+        solution = []
+        solver = Solver()
+        # route = routes[s] #[flow_1,flow_2,...,flow_f]
+        b_s = []
         for f in range(F):
             # choose viable routes with T function node besides S&D
             route = routes[s][f]        
-            log('##Mapping flow %d :' %(f+1))
-            log('#Source node: '+str(S[f]))
-            log('#Destination node: '+str(D[f]))
-            log('##Selected route: '+str(route))
-            # B_edges = search_b(r)
+            B_edges = search_b(route)
             l = len(route)-2
-            # generate nodes (components) mapping in z3 variables
-            b = [[Int('b_'+str(i)+str(j)) for j in range(T[f])] for i in range(l)]
+            # generate nodes (components) mapping in z3 variables, b_flow_num_func
+            b = [[Int('b_'+str(f)+'_'+str(route[i+1])+'_'+str(j)) for j in range(T[f])] for i in range(l)]
+            b_s.append(b)
 
-            solver = Solver()
             for bi in b:
                 for i in bi:
                     solver.append(Or(i==0,i==1))
@@ -264,44 +223,65 @@ def get_mapping(routes,num):
                     funcs.append(Sum(func))
                 for k in range(T[f]-1):
                     solver.append(funcs[k]>=funcs[k+1])
-
+            
             for i in range(l):
-                # cons3: CPU stress
-                resource = [b[i][j]*c[j] for j in range(T[f])]
-                solver.append(Sum(resource)<=E_cpu[i])
+                # cons4: brandwidth            
+                solver.append(B_sfc[f]<=B_edges[i])
 
-                # # cons4: brandwidth
-                # solver.append(B_sfc[f]<=B_edges[i])
-
-            count = 0
-            while(solver.check()==sat):
-                log('#Mapping %d:' %(count+1))
-                count = count + 1
-                m = solver.model()
-                mapping = {}
-                cons = []
-                for d in m.decls():
-                    if m[d]==1:
-                        # print("{}".format(d.name()),end=', ')
-                        i = d.name().split('_')[1][0]
-                        j = d.name().split('_')[1][1]
-                        mapping[j] = i
-                        # no repeating
-                        cons.append(d()==0)
-                solver.append(Or(cons))
-                for k in sorted(mapping.keys()):
-                    # print('function '+k+' -> component',mapping[k],' -> node ',r[int(mapping[k])+1])
-                    log('function '+k+' -> node '+str(route[int(mapping[k])+1])+'\t')
+        # cons3: CPU resource is shared by all the flows
+        node_list = [routes[s][i][j] for i in range(F) for j in range(1,len(routes[s][i])-1)]
+        node_set = set(node_list)
+        for n in node_set:
+            resource = []
+            for f in range(F):
+                if n in routes[s][f][1:-1]:
+                    x = routes[s][f][1:-1].index(n)
+                    resource += [b_s[f][x][j]*c[j] for j in range(T[f])]
+            solver.append(Sum(resource)<=E_cpu[i])
+            
+        while(solver.check()==sat and len(solution)<r_num and count<s_num):
+            log('#Solution num in total: '+str(count))
+            count = count + 1
+            thisMap = {}
+            m = solver.model()
+            cons = []
+            for d in m.decls():
+                if m[d]==1:
+                    # print("{}".format(d.name()),end=', ')
+                    f = d.name().split('_')[1]
+                    i = d.name().split('_')[2]
+                    j = d.name().split('_')[3]
+                    if f not in thisMap:
+                        thisMap[f] = {j:i} # {flow:{function:node_num}}
+                    else:
+                        thisMap[f][j]=i
+                    # cons: no repeating
+                    cons.append(d()==0)
+            solver.append(Or(cons))
+            for f in sorted(thisMap.keys()):
+                log('#flow '+f)
+                r = [str(n) for n in routes[s][int(f)]]
+                log('->'.join(r))
+                for k in sorted(thisMap[f].keys()):
+                    log('function '+k+' -> node '+thisMap[f][k])
+                # print('function '+k+' -> component',mapping[k],' -> node ',r[int(mapping[k])+1])
+                # log('function '+k+' -> node '+str(route[int(mapping[k])+1])+'\t')
                 log('------')
-        log('======')
-    return 
+            solution.append(thisMap)
 
-def get_routes(solver):
+        if len(solution)==0:
+            log('No feasible mapping!')
+        solutions.append(solution)
+        log('======')
+
+    return solutions
+
+def get_routes(solver,num):
     log('Finding route')    
     routes = []
     count = 0
-    while(solver.check()==sat):
-        count = count + 1
+    while(solver.check()==sat and count<num):
+        # count = count + 1
         m = solver.model()
         path = []
         cons = [[] for i in range(F)]
@@ -317,13 +297,14 @@ def get_routes(solver):
         route, wrong = check_routes(path) # a solution for all the flows
         if sum(wrong)==0: # check if the solution contains a wrong route
             routes.append(route) 
+            count = count + 1
 
         for f in range(F):
             cons[f] = Or(cons[f])
             if wrong[f]:
                 solver.append(cons[f])            
         solver.append(Or(cons))
-        print('======')
+        # print('======')
 
     log('Route')
     log('#Total solution: %d' %(len(routes)))
@@ -334,13 +315,19 @@ def get_routes(solver):
         
     for r in range(len(routes)):
         route = routes[r]
-        log('Solution %d:' %(r))
+        log('#Route solution %d:' %(r))
         for f in range(F):
             log('#Flow '+str(f+1)+': ')
             s_route = [str(i) for i in route[f]]
             log('->'.join(s_route))
+        log('------')
+
+    log('======')
+
     return routes
 
+# check the routes not to be loop or unreachable
+# loop is a big problem
 def check_routes(path):
     routes = []
     wrong = [0]*F
@@ -348,8 +335,8 @@ def check_routes(path):
         # log('#Flow '+str(f+1)+': ')
         s = S[f]
         d = D[f]
-        flow = []
-        route = []
+        flow = [] # nodes in flow solution
+        route = [] # feasible route from s to d
         for u in path:
             us = u.split('_')[1:]
             i = int(us[0])
@@ -371,17 +358,20 @@ def check_routes(path):
                     second = j
                     # log(str(second),sep='->')
                     route.append(int(second))   
+                    break
         if second == d and len(route)>=T[f]+2:
+            pass
             # log('True')
-            print('correct route!')
+            # print('correct route!')
         elif second != d:
+            log('Flow: '+str(f))
             log(str(second))
             log('###Not reaching destination, wrong route!')
             route = []
             wrong[f] = 1
         else:
             log('Flow: '+str(f))
-            log('#loop: '+','.join([str(fl) for fl in flow]))
+            log('#loop or wrong trace: '+','.join([str(fl) for fl in flow]))
             log('###Too short lenghth, wrong route!')
             route = []
             wrong[f] = 1
@@ -405,18 +395,20 @@ def main():
     times.append(time.process_time())
     
     solver = get_solver()
-    routes = get_routes(solver)
+    routes = get_routes(solver,50)
     times.append(time.process_time())
-    log('Time of finding routes (first mapping):'+str(times[-1]-times[-2]))
+    
+    mapping = get_mapping(routes,500)
+    times.append(time.process_time())
 
-    mapping = get_mapping(routes,5)
-    times.append(time.process_time())
-    log('Time of function mapping (second mapping):'+str(times[-1]-times[-2]))
-    log('Total time used:'+str(times[-1]-times[0]))
+    log('Time of finding routes (first mapping): '+str(times[1]-times[0]))
+    log('Time of function mapping (second mapping): '+str(times[2]-times[1]))
+    log('Total time used: '+str(times[-1]-times[0]))
     print('======')
 
 if __name__=='__main__':
     res_file = open(file,'w',encoding='utf-8')
+    map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
     edges,B = load_edges('network-brand.txt')
     cpu = open('CPU.txt','r')
     E_cpu = cpu.readlines()
