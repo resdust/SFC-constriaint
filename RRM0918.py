@@ -1,7 +1,7 @@
 ######
-# 9.12 Output the whole path rather than the function mapping 
-# 9.08 change 200 solutions as mapping scheme in every experiment
-# 9.08 fix the problem of not considering all the SFCs in mapping
+# 9.12 Output the whole path as well as the function mapping 
+# 9.08 constrains the solution number to 500 mapping scheme in every experiment
+# 9.08 fix the problem of not considering all the SFCs in mapping progress
 # 8.15 change to node constraint
 # 8.13 add bilateral topology
 # 8.2 multi flows with multi function chains
@@ -15,20 +15,6 @@ from z3 import *
 import time
 import random
 import numpy as np
-
-# define global variables
-N = 100 # number of nodes
-F = 3 # number of flows
-B_sfc = [10]*F # service function chian Brandwidth
-B_node = 1 # max number of flow on one node
-T = [3]*F # number of functions
-L = T[0]+3 # max route Length
-# S = [50,6,87]
-# D = [0,2,43]
-S = [int(random.random()*N) for i in range(F)]
-D = [int(random.random()*N) for i in range(F)]
-c = [int(random.random()*3)*10 for i in range(T[0])] # service function CPU requirement
-file = 'RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
 
 # load two-way topology
 def load_edges(file):
@@ -107,71 +93,6 @@ def search_b(route):
         b = B[node][index]
         b_nodes.append(b)
     return b_nodes
-
-# generate available route
-def get_solver():
-    constrains = []
-    solver = Solver()
-    # generate edges in z3 variables
-
-    E = [] #E:[f_0,f_1...f_F] f_0:[c01,c02,c03...]
-    for f in range(F):
-        E_f = []
-        for i in range(N):
-            name = 'c_'+str(f)+'_'+str(i)
-            node = Int(name)
-            E_f.append(node)
-            cons = Or(node==1,node==0)
-            constrains.append(cons)
-        E.append(E_f)
-
-    # available = [[] for i in range(F)]
-    for f in range(F):
-        # dis = dijkstra(D[f])
-        constrains.append(E[f][S[f]] == 1)
-        constrains.append(E[f][D[f]] == 1)
-
-        for i in range(N):
-            nodes = nodes_out(E,i,f)
-            nears = []
-            fars = []
-            if (i != S[f] and i != D[f]):
-                # Rechability constraint
-                # for n in nodes:
-                #     k = int(n.decl().name().split('_')[1])
-                #     if dis[k]<=dis[i]:
-                #         nears.append(n)
-                #     if dis[k]>=dis[i]:
-                #         fars.append(n)
-                # if nears != [] and fars != []:
-                #     cons = And(Sum(nears)>0,Sum(fars)>0)
-                #     constrains.append(Implies(E[f][i]==1, cons))
-                # else:
-                #     constrains.append(E[f][i]!=1)
-                
-                # cons: flow constraint
-                z = edges_node(E,i)
-                cons = z<=B_node
-                constrains.append(cons)
-                
-                # Loop constraint
-                constrains.append(Implies(E[f][i]==1,Sum(nodes)==2))
-            else: # S&D
-                if D[f] in edges[S[f]]:
-                    constrains.append(Sum(nodes)==2)
-                else:
-                    constrains.append(Sum(nodes)==1)
-
-        # cons: length constraint
-        length = Sum(E[f])
-        cons = length<=L
-        constrains.append(cons)
-        cons = length>=T[f]+2
-        constrains.append(cons)
-
-        solver.add(constrains)
-
-    return solver
 
 # map service functions to nodes except S & D
 def get_mapping(routes,s_num):
@@ -276,6 +197,72 @@ def get_mapping(routes,s_num):
 
     return solutions
 
+# generate available route
+def get_solver():
+    constrains = []
+    solver = Solver()
+    # generate edges in z3 variables
+
+    E = [] #E:[f_0,f_1...f_F] f_0:[c01,c02,c03...]
+    for f in range(F):
+        E_f = []
+        for i in range(N):
+            name = 'c_'+str(f)+'_'+str(i)
+            node = Int(name)
+            E_f.append(node)
+            cons = Or(node==1,node==0)
+            constrains.append(cons)
+        E.append(E_f)
+
+    # available = [[] for i in range(F)]
+    for f in range(F):
+        # dis = dijkstra(D[f])
+        constrains.append(E[f][S[f]] == 1)
+        constrains.append(E[f][D[f]] == 1)
+
+        for i in range(N):
+            nodes = nodes_out(E,i,f)
+            nears = []
+            fars = []
+            if (i != S[f] and i != D[f]):
+                # Rechability constraint
+                # for n in nodes:
+                #     k = int(n.decl().name().split('_')[1])
+                #     if dis[k]<=dis[i]:
+                #         nears.append(n)
+                #     if dis[k]>=dis[i]:
+                #         fars.append(n)
+                # if nears != [] and fars != []:
+                #     cons = And(Sum(nears)>0,Sum(fars)>0)
+                #     constrains.append(Implies(E[f][i]==1, cons))
+                # else:
+                #     constrains.append(E[f][i]!=1)
+                
+                # cons: flow constraint
+                z = edges_node(E,i)
+                cons = z<=B_node
+                constrains.append(cons)
+                
+                # Loop constraint
+                constrains.append(Implies(E[f][i]==1,Sum(nodes)==2))
+            else: # S&D
+                if D[f] in edges[S[f]]:
+                    constrains.append(Sum(nodes)==2)
+                else:
+                    constrains.append(Sum(nodes)==1)
+
+        # cons: length constraint
+        length = Sum(E[f])
+        cons = length<=L
+        constrains.append(cons)
+        cons = length>=T[f]+2
+        constrains.append(cons)
+
+        solver.add(constrains)
+
+    return solver
+
+
 def get_routes(solver,num):
     log('Finding route')    
     routes = []
@@ -326,6 +313,20 @@ def get_routes(solver,num):
 
     return routes
 
+def trace(flow,s,d,route):
+    route.append(s)
+    flow.pop(s)
+    if(flow and s!=d):
+        for j in edges[s]:
+            if j in flow:
+                s = j
+                route.append(int(s))
+        return trace(flow,s,d,route)
+    elif (s==d and not flow):
+        return route,0
+    else:
+        return route,1
+
 # check the routes not to be loop or unreachable
 # loop is a big problem
 def check_routes(path):
@@ -348,6 +349,7 @@ def check_routes(path):
                     flow.append(int(us[1]))
 
         # trace the flow
+        # route = trace(flow,s,d,route)
         route.append(s)
         second = s
         # log(str(second),sep='->')
@@ -407,10 +409,25 @@ def main():
     print('======')
 
 if __name__=='__main__':
-    res_file = open(file,'w',encoding='utf-8')
-    map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
-    edges,B = load_edges('network-brand.txt')
-    cpu = open('CPU.txt','r')
-    E_cpu = cpu.readlines()
-    main()
-    res_file.close()
+    for F in range(3,8):
+        # define global variables
+        N = 100 # number of nodes
+        F = 3 # number of flows
+        B_sfc = [10]*F # service function chian Brandwidth
+        B_node = 1 # max number of flow on one node
+        T = [3]*F # number of functions
+        L = T[0]+3 # max route Length
+        # S = [50,6,87]
+        # D = [0,2,43]
+        S = [int(random.random()*N) for i in range(F)]
+        D = [int(random.random()*N) for i in range(F)]
+        c = [int(random.random()*3)*10 for i in range(T[0])] # service function CPU requirement
+        file = 'RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
+
+        res_file = open(file,'w',encoding='utf-8')
+        map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
+        edges,B = load_edges('network-brand.txt')
+        cpu = open('CPU.txt','r')
+        E_cpu = cpu.readlines()
+        main()
+        res_file.close()
