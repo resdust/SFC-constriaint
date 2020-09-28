@@ -5,9 +5,7 @@
 #           length<=L
 #           length>=T+1
 # get_mapping -> mapping SFC to every possible route (length>=T+1)
-# -[x] 只在路径没有成环时加入到不重复edge的约束
-# -[√] 实在不行就从有重复边的解里挑几个
-# -[√] T = [3,4,5]
+# -[] 改边的变量为节点变量，减少变量个数，加快求解
 ######
 
 from z3 import *

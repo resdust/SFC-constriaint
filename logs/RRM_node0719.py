@@ -30,6 +30,10 @@ def load_edges(file):
             edges[i].append([j,b])
         else:
             edges[i] = [[j,b]]
+        if j in edges:
+            edges[j].append([i,b])
+        else:
+            edges[j] = [[i,b]]
 
     i = 0
     keys = list(edges.keys())
@@ -120,32 +124,37 @@ def gen_flow():
 
         for j in range(N):
             Sigma = Sum(C[i])*Lamb[i]
-            outs = nodes_out(i,j,C)
-            ins = nodes_in(i,j,C)
-            nodes = outs + ins
+            nodes = nodes_out(i,j,C)
             cons = []
-            inter = []
+            nears = []
+            fars = []
             constrains.append(Or(C[i][j]==1, C[i][j]==0))
 
             if (j != S[i] and j != D[i]): 
+                '''
                 # Rechability constraint
                 for n in nodes:
                     k = int(n.decl().name().split('_')[1])
-                    if dis[k]<dis[j]:
-                        inter.append(And(C[i][j]==1,C[i][k]==1))          
-                if inter != []:
-                    cons = Or(inter)
+                    if dis[k]<=dis[j]:
+                        nears.append(n)
+                    if dis[k]>=dis[j]:
+                        fars.append(n)
+                if nears != [] and fars != []:
+                    cons = And(Sum(nears)>0,Sum(fars)>0)
                     constrains.append(Implies(C[i][j]==1, cons))
-                # Incoming == Outcomint
-                constrains.append(Sum(ins)==Sum(outs))
+                else:
+                    constrains.append(C[i][j]!=1)
+                '''
                 # Loop constraint
-                constrains.append(Implies(C[i][j]==1,Sum(nodes)<=2))
-            elif (j == S[i]): # Source
-                constrains.append(Sum(outs)==1)
-                constrains.append(Sum(ins)==0)
+                constrains.append(Implies(C[i][j]==1,Sum(nodes)==2))
+            # elif (j == S[i]): # Source
+            #     outs = [n==1 for n in nodes]
+            #     constrains.append(Or(outs))
+            #     constrains.append(Sum(ins)==0)
             else: # Destination
-                constrains.append(Sum(ins)==1)
-                constrains.append(Sum(outs)==0)
+                # ins = [n==1 for n in nodes]
+                # constrains.append(Or(ins))
+                constrains.append(Sum(nodes)==1)
             
             # Load Satisfaction constraint
             constrains.append(Implies(C[i][j]==1, Sigma<=K[j]-Lamb[i]))
@@ -155,7 +164,7 @@ def gen_flow():
         # QoS constraint -> Length constraint
         constrains.append(Sum(C[i])<=T)
         # Pair Mapping constraint
-        constrains.append(Sum(C[i])>1)
+        constrains.append(Sum(C[i])>4)
 
         solver.add(constrains)
         print(solver.check())

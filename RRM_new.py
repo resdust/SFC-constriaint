@@ -373,7 +373,7 @@ def check_routes(path):
             wrong[f] = 1
         else:
             log('Flow: '+str(f))
-            log('#loop or wrong trace: '+','.join([str(fl) for fl in flow]))
+            log('#loop or wrong trace: '+','.join([str(r) for r in route])+'--'+','.join([str(fl) for fl in flow]))
             log('###Too short lenghth, wrong route!')
             route = []
             wrong[f] = 1
@@ -408,26 +408,28 @@ def main():
     log('Total time used: '+str(times[-1]-times[0]))
     print('======')
 
+    return 1 if mapping!=[] else 0
+
 if __name__=='__main__':
-    for F in range(3,8):
+    for t in range(1):
         # define global variables
         N = 100 # number of nodes
         F = 3 # number of flows
         B_sfc = [10]*F # service function chian Brandwidth
-        B_node = 1 # max number of flow on one node
-        T = [3]*F # number of functions
+        B_node = 4 # max number of flow on one node
+        T = [7]*F # number of functions
         L = T[0]+3 # max route Length
         # S = [50,6,87]
         # D = [0,2,43]
         S = [int(random.random()*N) for i in range(F)]
         D = [int(random.random()*N) for i in range(F)]
         c = [int(random.random()*3)*10 for i in range(T[0])] # service function CPU requirement
-        file = 'RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
+        file = 'RRM_p_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
 
         res_file = open(file,'w',encoding='utf-8')
-        map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
+        # map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
         edges,B = load_edges('network-brand.txt')
         cpu = open('CPU.txt','r')
         E_cpu = cpu.readlines()
-        main()
+        suc = main()
         res_file.close()
