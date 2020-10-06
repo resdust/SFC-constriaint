@@ -86,14 +86,12 @@ def edges_node(E,i):
 
 # find Brandwith for edges in route
 def search_b(route):
-    b_nodes = []
-    for i in range(len(route)-1):
-        node = route[i]
-        nex = route[i+1]
-        index = edges[node].index(nex)
-        b = B[node][index]
-        b_nodes.append(b)
-    return b_nodes
+    node = route[0]
+    nex = route[1]
+    index = edges[node].index(nex)
+    b = B[node][index]
+
+    return b
 
 # map service functions to nodes except S & D
 def get_mapping(routes,s_num):
@@ -116,7 +114,7 @@ def get_mapping(routes,s_num):
         for f in range(F):
             # choose viable routes with T function node besides S&D
             route = routes[s][f]        
-            B_edges = search_b(route)
+            # B_edges = search_b(route)
             l = len(route)-2
             # generate nodes (components) mapping in z3 variables, b_flow_num_func
             b = [[Int('b_'+str(f)+'_'+str(route[i+1])+'_'+str(j)) for j in range(T[f])] for i in range(l)]
@@ -224,19 +222,6 @@ def get_solver():
             # nears = []
             # fars = []
             if (i != S[f] and i != D[f]):
-                # Rechability constraint
-                # for n in nodes:
-                #     k = int(n.decl().name().split('_')[1])
-                #     if dis[k]<=dis[i]:
-                #         nears.append(n)
-                #     if dis[k]>=dis[i]:
-                #         fars.append(n)
-                # if nears != [] and fars != []:
-                #     cons = And(Sum(nears)>0,Sum(fars)>0)
-                #     constrains.append(Implies(E[f][i]==1, cons))
-                # else:
-                #     constrains.append(E[f][i]!=1)
-                
                 # Loop constraint
                 constrains.append(Implies(E[f][i]==1,Sum(nodes)==2))
             else: # S&D
@@ -245,12 +230,11 @@ def get_solver():
                 else:
                     constrains.append(Sum(nodes)==1)
 
-        '''
         middle = []
         for i in range(len(M)):
             middle.append(E[f][M[i]])
         constrains.append(Sum(middle)>=1)
-        '''
+        
         # cons: length constraint
         length = Sum(E[f])
         cons = length<=L
@@ -263,6 +247,14 @@ def get_solver():
         z = edges_node(E,i)
         cons = (z<=B_node)
         constrains.append(cons)
+        
+    # cons: Brandwith constraint
+    for i in range(N):
+        for j in edges[i]:
+            need = []
+            for f in range(F):
+                need.append(E[f][i]*E[f][j]*B_sfc[f])
+            constrains.append(Sum(need)<=search_b([i,j]))
 
     solver.add(constrains)
 
@@ -318,22 +310,6 @@ def get_routes(solver,num):
     log('======')
 
     return routes, len(routes)
-
-'''
-def trace(flow,s,d,route):
-    route.append(s)
-    flow.pop(s)
-    if(flow and s!=d):
-        for j in edges[s]:
-            if j in flow:
-                s = j
-                route.append(int(s))
-        return trace(flow,s,d,route)
-    elif (s==d and not flow):
-        return route,0
-    else:
-        return route,1
-'''
 
 # check the routes not to be loop or unreachable
 # loop is a big problem
@@ -434,11 +410,11 @@ if __name__=='__main__':
         # define global variables
         N = 100 # number of nodes
         # F = 4 # number of flows
-        B_sfc = [10]*F # service function chian Brandwidth
+        B_sfc = [3]*F # service function chian Brandwidth requirement
         B_node = 50 # max number of flow on one node
         T = [3]*F # number of functions
         L = T[0]+4 # max route Length
-        M = [1, 2, 25, 0, 10, 3, 7] # Middle-ware nodes that every SFC must go through at least ont of them
+        M = [1, 2, 25, 0, 10, 3] # Middle-ware nodes that every SFC must go through at least ont of them
         # [1, 2, 25, 0, 10, 3, 7, 12, 18, 6, 15, 17, 31, 58, 5, 8,14,35,41,13] # sorted by edges desc
         # M = list(range(0,100))
         S = [59, 97, 7, 59, 4, 50, 47, 7, 22, 92] + [int(random.random()*N) for i in range(F-10)]
