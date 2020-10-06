@@ -1,4 +1,5 @@
 ######
+# 9.29 Add middle-ware constraints
 # 9.12 Output the whole path as well as the function mapping 
 # 9.08 constrains the solution number to 500 mapping scheme in every experiment
 # 9.08 fix the problem of not considering all the SFCs in mapping progress
@@ -101,8 +102,6 @@ def get_mapping(routes,s_num):
         log('No routes to mapping!')
         return
 
-    import numpy as np
-
     solutions = []  # [[solution1:flow_1,...,flow_f],[solution2:...],...]
                     # 200 mapping pairs, every item contains mappings of all the flows
     count = 0 # total mapping count
@@ -135,7 +134,7 @@ def get_mapping(routes,s_num):
                 solver.append(Sum(funcs)==1)
 
             # cons2: service sequence
-            for t in range(T[f]):
+            for t in range(l):
                 funcs = []
                 for j in range(T[f]):
                     func = []
@@ -145,9 +144,9 @@ def get_mapping(routes,s_num):
                 for k in range(T[f]-1):
                     solver.append(funcs[k]>=funcs[k+1])
             
-            for i in range(l):
-                # cons4: brandwidth            
-                solver.append(B_sfc[f]<=B_edges[i])
+            # for i in range(l):
+            #     # cons4: brandwidth            
+            #     solver.append(B_sfc[f]<=B_edges[i])
 
         # cons3: CPU resource is shared by all the flows
         node_list = [routes[s][i][j] for i in range(F) for j in range(1,len(routes[s][i])-1)]
@@ -161,7 +160,7 @@ def get_mapping(routes,s_num):
             solver.append(Sum(resource)<=E_cpu[i])
             
         while(solver.check()==sat and len(solution)<r_num and count<s_num):
-            log('#Solution num in total: '+str(count))
+            log('#Solution count in total: '+str(count))
             count = count + 1
             thisMap = {}
             m = solver.model()
@@ -195,7 +194,7 @@ def get_mapping(routes,s_num):
         solutions.append(solution)
         log('======')
 
-    return solutions
+    return count
 
 # generate available route
 def get_solver():
@@ -222,8 +221,8 @@ def get_solver():
 
         for i in range(N):
             nodes = nodes_out(E,i,f)
-            nears = []
-            fars = []
+            # nears = []
+            # fars = []
             if (i != S[f] and i != D[f]):
                 # Rechability constraint
                 # for n in nodes:
@@ -238,11 +237,6 @@ def get_solver():
                 # else:
                 #     constrains.append(E[f][i]!=1)
                 
-                # cons: flow constraint
-                z = edges_node(E,i)
-                cons = z<=B_node
-                constrains.append(cons)
-                
                 # Loop constraint
                 constrains.append(Implies(E[f][i]==1,Sum(nodes)==2))
             else: # S&D
@@ -251,14 +245,26 @@ def get_solver():
                 else:
                     constrains.append(Sum(nodes)==1)
 
+        '''
+        middle = []
+        for i in range(len(M)):
+            middle.append(E[f][M[i]])
+        constrains.append(Sum(middle)>=1)
+        '''
         # cons: length constraint
         length = Sum(E[f])
         cons = length<=L
         constrains.append(cons)
-        cons = length>=T[f]+2
+        cons = length>2
+        constrains.append(cons)
+    
+    for i in range(N):
+        # cons: flow constraint
+        z = edges_node(E,i)
+        cons = (z<=B_node)
         constrains.append(cons)
 
-        solver.add(constrains)
+    solver.add(constrains)
 
     return solver
 
@@ -275,7 +281,7 @@ def get_routes(solver,num):
         for d in m.decls():
             if m[d]==1:
                 # print("{}".format(d.name()),end=', ')
-                path.append(d.name())   
+                path.append(d)   
                 # cons6: no repeat edge
                 d_arr = d.name().split('_')
                 f= int(d_arr[1])
@@ -298,7 +304,7 @@ def get_routes(solver,num):
     log('#Wrong solution number: %d' %(count-len(routes)))
     if len(routes)==0:
         log('No solution!')
-        return None
+        return None, 0
         
     for r in range(len(routes)):
         route = routes[r]
@@ -311,8 +317,9 @@ def get_routes(solver,num):
 
     log('======')
 
-    return routes
+    return routes, len(routes)
 
+'''
 def trace(flow,s,d,route):
     route.append(s)
     flow.pop(s)
@@ -326,10 +333,12 @@ def trace(flow,s,d,route):
         return route,0
     else:
         return route,1
+'''
 
 # check the routes not to be loop or unreachable
 # loop is a big problem
-def check_routes(path):
+def check_routes(nodes):
+    path = [n.name() for n in nodes]
     routes = []
     wrong = [0]*F
     for f in range(F):
@@ -337,6 +346,7 @@ def check_routes(path):
         s = S[f]
         d = D[f]
         flow = [] # nodes in flow solution
+        # flow_index = []
         route = [] # feasible route from s to d
         for u in path:
             us = u.split('_')[1:]
@@ -347,27 +357,34 @@ def check_routes(path):
                     return [],1
                 else:
                     flow.append(int(us[1]))
+                    # flow_index.append()
 
         # trace the flow
         # route = trace(flow,s,d,route)
         route.append(s)
         second = s
-        # log(str(second),sep='->')
-        while second in flow:
+        while second in flow and second != d:
             flow.pop(flow.index(second))
             for j in edges[second]:
-                if j in flow:
+                if (j in flow and j!=d) or (len(route)>=2 and j==d):
                     second = j
-                    # log(str(second),sep='->')
-                    route.append(int(second))   
+                    route.append(second)   
                     break
-        if second == d and len(route)>=T[f]+2:
+                elif j == edges[second][-1]:
+                    log('Flow: '+str(f))
+                    log('#trace error: '+','.join([str(r) for r in route])+'--'+','.join([str(fl) for fl in flow]))
+                    log('###No feasible trace, wrong route!')
+                    route = []
+                    wrong[f] = 1
+                    return routes, wrong
+                
+        if second == d and len(route)>2:
             pass
             # log('True')
             # print('correct route!')
         elif second != d:
             log('Flow: '+str(f))
-            log(str(second))
+            log('#not reach destination '+str(D[f])+': '+','.join([str(r) for r in route])+'--'+','.join([str(fl) for fl in flow]))
             log('###Not reaching destination, wrong route!')
             route = []
             wrong[f] = 1
@@ -397,34 +414,37 @@ def main():
     times.append(time.process_time())
     
     solver = get_solver()
-    routes = get_routes(solver,50)
+    routes, c_routes = get_routes(solver,50)
     times.append(time.process_time())
     
-    mapping = get_mapping(routes,500)
+    c_mapping = get_mapping(routes,500)
     times.append(time.process_time())
 
+    log('Total route solutions: '+str(c_routes))
+    log('Total mapping solutions: '+str(c_mapping))
     log('Time of finding routes (first mapping): '+str(times[1]-times[0]))
     log('Time of function mapping (second mapping): '+str(times[2]-times[1]))
     log('Total time used: '+str(times[-1]-times[0]))
     print('======')
 
-    return 1 if mapping!=[] else 0
+    return 1 if c_mapping else 0
 
 if __name__=='__main__':
-    for t in range(1):
+    for F in range(10,50,10):
         # define global variables
         N = 100 # number of nodes
-        F = 3 # number of flows
+        # F = 4 # number of flows
         B_sfc = [10]*F # service function chian Brandwidth
-        B_node = 4 # max number of flow on one node
-        T = [7]*F # number of functions
-        L = T[0]+3 # max route Length
-        # S = [50,6,87]
-        # D = [0,2,43]
-        S = [int(random.random()*N) for i in range(F)]
-        D = [int(random.random()*N) for i in range(F)]
-        c = [int(random.random()*3)*10 for i in range(T[0])] # service function CPU requirement
-        file = 'RRM_p_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
+        B_node = 50 # max number of flow on one node
+        T = [3]*F # number of functions
+        L = T[0]+4 # max route Length
+        M = [1, 2, 25, 0, 10, 3, 7] # Middle-ware nodes that every SFC must go through at least ont of them
+        # [1, 2, 25, 0, 10, 3, 7, 12, 18, 6, 15, 17, 31, 58, 5, 8,14,35,41,13] # sorted by edges desc
+        # M = list(range(0,100))
+        S = [59, 97, 7, 59, 4, 50, 47, 7, 22, 92] + [int(random.random()*N) for i in range(F-10)]
+        D = [87, 91, 23, 76, 28, 30, 34, 16, 67, 71] + [int(random.random()*N) for i in range(F-10)]
+        c = [int(random.random()*3)*1 for i in range(T[0])] # service function CPU requirement
+        file = 'results_middle/RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
 
         res_file = open(file,'w',encoding='utf-8')
         # map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
