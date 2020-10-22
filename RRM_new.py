@@ -293,7 +293,6 @@ def get_routes(solver,num):
 
     log('Route')
     log('#Total solution: %d' %(len(routes)))
-    log('#Wrong solution number: %d' %(count-len(routes)))
     if len(routes)==0:
         log('No solution!')
         return None, 0
@@ -406,20 +405,21 @@ def main():
     return 1 if c_mapping else 0
 
 if __name__=='__main__':
-    for F in range(10,50,10):
+    # for t in range(3,8):
+    for F in range(50,60,10):
         # define global variables
         N = 100 # number of nodes
-        # F = 4 # number of flows
-        B_sfc = [3]*F # service function chian Brandwidth requirement
-        B_node = 50 # max number of flow on one node
+        # F = 10 # number of flows
+        B_sfc = [5]*F # service function chian Brandwidth requirement
+        B_node = 20 # max number of flow on one node
         T = [3]*F # number of functions
         L = T[0]+4 # max route Length
         M = [1, 2, 25, 0, 10, 3] # Middle-ware nodes that every SFC must go through at least ont of them
         # [1, 2, 25, 0, 10, 3, 7, 12, 18, 6, 15, 17, 31, 58, 5, 8,14,35,41,13] # sorted by edges desc
         # M = list(range(0,100))
-        S = [59, 97, 7, 59, 4, 50, 47, 7, 22, 92] + [int(random.random()*N) for i in range(F-10)]
-        D = [87, 91, 23, 76, 28, 30, 34, 16, 67, 71] + [int(random.random()*N) for i in range(F-10)]
-        c = [int(random.random()*3)*1 for i in range(T[0])] # service function CPU requirement
+        S = [59, 97, 7, 59, 4, 50, 47, 7, 22, 92, 1, 65, 65, 92, 71, 3, 46, 20, 98, 27, 54, 10, 63, 49, 80, 39, 54, 43, 90, 57, 78, 54, 93, 10, 19, 72, 25, 50, 48, 46, 36, 90, 76, 15, 21, 72, 75, 57, 36, 0]
+        D = [87, 91, 23, 76, 28, 30, 34, 16, 67, 71, 5, 98, 13, 79, 94, 50, 79, 26, 59, 68, 72, 24, 17, 63, 47, 40, 80, 4, 85, 67, 62, 93, 36, 91, 63, 36, 99, 28, 31, 99, 43, 55, 73, 21, 26, 81, 29, 11, 46, 31]
+        c = [int(random.random()*5)*1 for i in range(T[0])] # service function CPU requirement
         file = 'results_middle/RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
 
         res_file = open(file,'w',encoding='utf-8')
