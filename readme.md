@@ -2,8 +2,8 @@
 流数设置为3、4、5、6、7
 求解时间=第一次映射的时间+第二次映射的总时间
 
-|Length of Function Chain	|Number of Flows	|Time of First Mapping	|Time of Second Mapping	|Total Time|
-|:---:|:---:|:---:|:---:|:---:|
+|Length of Function Chain	|Number of Flows    |Time of First Mapping (routes)	|Number of Routes	|Time of Second Mapping	|Number of Mappings |Total Time|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |     3    |     3    |     9.34375      |     50    |     14.90625     |     500    |     24.25        |
 |     3    |     4    |     12.046875    |     50    |     17.171875    |     500    |     29.21875     |
 |     3    |     5    |     20.078125    |     50    |     18.0625      |     500    |     38.140625    |
@@ -14,13 +14,36 @@
 服务链长度设置为3、4、5、6、7
 同样是统计求解时间
 
-|Length of Function Chain	|Number of Flows	|Time of First Mapping	|Time of Second Mapping	|Total Time|
-|:---:|:---:|:---:|:---:|:---:|
+|Length of Function Chain	|Number of Flows    |Time of First Mapping (routes)	|Number of Routes	|Time of Second Mapping	|Number of Mappings |Total Time|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 |     3    |     3    |     7.0         |     50    |     12.984375    |     500    |     19.984375    |
 |     4    |     3    |     10.03125    |     50    |     19.875       |     500    |     29.90625     |
 |     5    |     3    |     9.03125     |     50    |     32.0625      |     500    |     41.09375     |
 |     6    |     3    |     8.515625    |     50    |     42.796875    |     500    |     51.3125      |
 |     7    |     3    |     8.59375     |     50    |     51.828125    |     500    |     60.421875    |
 
+- 服务链长度固定为3
+流数设置为10、20、30、40、50
+求解时间=第一次映射的时间+第二次映射的总时间
+
+|Length of Function Chain	|Number of Flows    |Time of First Mapping (routes)	|Number of Routes	|Time of Second Mapping	|Number of Mappings |Total Time|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|     3    |     10   |     35.21875      |     50    |     40.4375     |     500    |     75.65625       |
+|     3    |     20   |     90.25         |     50    |     73.453125   |     500    |     163.703125     |
+|     3    |     30   |     181.390625    |     50    |     120.5      |     500    |     301.890625   |
+|     3    |     40   |     309.828125   |     50    |     152.171875     |     500    |     462.0   |
+|     3    |     50   |     494.15625      |     50    |     186.890625    |     500    |     681.046875    |
+
+- 流数固定为10
+服务链长度设置为3、4、5、6、7
+同样是统计求解时间
+
+|Length of Function Chain	|Number of Flows    |Time of First Mapping (routes)	|Number of Routes	|Time of Second Mapping	|Number of Mappings |Total Time|
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|     3    |     10   |     34.71875        |     50    |     39.3125    |     500    |     74.03125    |
+|     4    |     10   |     34.0625    |     50    |     53.359375       |     500    |     87.421875     |
+|     5    |     10   |     33.203125   |     50    |     84.40625     |     500    |    117.609375    |
+|     6    |     10   |     32.609375   |     50    |     115.59375    |     500    |     148.203125      |
+|     7    |     10   |     32.296875     |     50    |     161.28125    |     500    |     193.578125    |
 
 result-长度-流数
