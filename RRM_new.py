@@ -271,7 +271,7 @@ def get_routes(solver,num):
         path = []
         cons = [[] for i in range(F)]
         for d in m.decls():
-            if m[d]==1:
+            if m[d].as_long()==1:
                 # print("{}".format(d.name()),end=', ')
                 path.append(d)   
                 # cons6: no repeat edge
@@ -280,6 +280,9 @@ def get_routes(solver,num):
                 cons[f].append(d()==0)
         
         route, wrong = check_routes(path) # a solution for all the flows
+        if route in routes:
+            print('same route:',route)
+            wrong.append(1)
         if sum(wrong)==0: # check if the solution contains a wrong route
             routes.append(route) 
             count = count + 1
@@ -406,26 +409,29 @@ def main():
 
 if __name__=='__main__':
     # for t in range(3,8):
-    for F in range(50,60,10):
-        # define global variables
-        N = 100 # number of nodes
-        # F = 10 # number of flows
-        B_sfc = [5]*F # service function chian Brandwidth requirement
-        B_node = 20 # max number of flow on one node
-        T = [3]*F # number of functions
-        L = T[0]+4 # max route Length
-        M = [1, 2, 25, 0, 10, 3] # Middle-ware nodes that every SFC must go through at least ont of them
-        # [1, 2, 25, 0, 10, 3, 7, 12, 18, 6, 15, 17, 31, 58, 5, 8,14,35,41,13] # sorted by edges desc
-        # M = list(range(0,100))
-        S = [59, 97, 7, 59, 4, 50, 47, 7, 22, 92, 1, 65, 65, 92, 71, 3, 46, 20, 98, 27, 54, 10, 63, 49, 80, 39, 54, 43, 90, 57, 78, 54, 93, 10, 19, 72, 25, 50, 48, 46, 36, 90, 76, 15, 21, 72, 75, 57, 36, 0]
-        D = [87, 91, 23, 76, 28, 30, 34, 16, 67, 71, 5, 98, 13, 79, 94, 50, 79, 26, 59, 68, 72, 24, 17, 63, 47, 40, 80, 4, 85, 67, 62, 93, 36, 91, 63, 36, 99, 28, 31, 99, 43, 55, 73, 21, 26, 81, 29, 11, 46, 31]
-        c = [int(random.random()*5)*1 for i in range(T[0])] # service function CPU requirement
-        file = 'results_middle/RRM_result_'+str(T[0])+'_'+str(F)+'.txt' # RRM_result_funcNum_flowNum.txt
+    # for F in range(3,4):
+    # define global variables
+    F = 2
+    N = 100 # number of nodes
+    # F = 10 # number of flows
+    B_sfc = [5]*F # service function chian Brandwidth requirement
+    B_node = 20 # max number of flow on one node
+    T = [5]*F # number of functions
+    L = T[0]+4 # max route Length
+    M = [1, 2, 25, 0, 10, 3] # Middle-ware nodes that every SFC must go through at least ont of them
+    # [1, 2, 25, 0, 10, 3, 7, 12, 18, 6, 15, 17, 31, 58, 5, 8,14,35,41,13] # sorted by edges desc
+    # M = list(range(0,100))
+    S = [59,97,7]
+    D = [87,91,23]
+    # S = [59, 97, 7, 59, 4, 50, 47, 7, 22, 92, 1, 65, 65, 92, 71, 3, 46, 20, 98, 27, 54, 10, 63, 49, 80, 39, 54, 43, 90, 57, 78, 54, 93, 10, 19, 72, 25, 50, 48, 46, 36, 90, 76, 15, 21, 72, 75, 57, 36, 0]
+    # D = [87, 91, 23, 76, 28, 30, 34, 16, 67, 71, 5, 98, 13, 79, 94, 50, 79, 26, 59, 68, 72, 24, 17, 63, 47, 40, 80, 4, 85, 67, 62, 93, 36, 91, 63, 36, 99, 28, 31, 99, 43, 55, 73, 21, 26, 81, 29, 11, 46, 31]
+    c = [int(random.random()*5)*1 for i in range(T[0])] # service function CPU requirement
+    file = 'results_123/RRM_result_t_123.txt' # RRM_result_funcNum_flowNum.txt
 
-        res_file = open(file,'w',encoding='utf-8')
-        # map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
-        edges,B = load_edges('network-brand.txt')
-        cpu = open('CPU.txt','r')
-        E_cpu = cpu.readlines()
-        suc = main()
-        res_file.close()
+    res_file = open(file,'w',encoding='utf-8')
+    # map_file = open(file.split('.')[0]+'_map.txt','w',encoding='utf-8')
+    edges,B = load_edges('network-brand.txt')
+    cpu = open('CPU.txt','r')
+    E_cpu = cpu.readlines()
+    suc = main()
+    res_file.close()
